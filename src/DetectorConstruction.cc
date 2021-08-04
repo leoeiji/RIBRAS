@@ -272,9 +272,9 @@ void DetectorConstruction::ComputeParameters()
 
   // Magnetic field parameters
   Mag1_diameter = 30.0 * cm;
-  Mag1_lenght = 140.0 * cm;
+  Mag1_lenght = 68.0 * cm;
   Mag2_diameter = 30.0 * cm;
-  Mag2_lenght = 140.0 * cm;
+  Mag2_lenght = 68.0 * cm;
   Mag3_diameter = 50.0 * cm;
   Mag3_lenght = 90.0 * cm;
 
@@ -375,7 +375,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
   // Set "user limits" for drawing smooth curve
   G4UserLimits *userLimits = new G4UserLimits(1.e-5 * mm);
   Log_Magnet1->SetUserLimits(userLimits);
-  Log_Magnet1->SetVisAttributes(G4VisAttributes::Invisible);
+  // Log_Magnet1->SetVisAttributes(G4VisAttributes::Invisible);
 
   //------ Building Second Solenoid ------//
 
@@ -406,7 +406,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
   // Set "user limits" for drawing smooth curve
   G4UserLimits *limiteuser = new G4UserLimits(1.e-5 * mm);
   Log_Magnet2->SetUserLimits(limiteuser);
-  Log_Magnet2->SetVisAttributes(G4VisAttributes::Invisible);
+  // Log_Magnet2->SetVisAttributes(G4VisAttributes::Invisible);
 
   //////////////////
   //  Solenoid 3  //

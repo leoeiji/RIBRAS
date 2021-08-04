@@ -96,7 +96,8 @@ void BeamTestPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
   y = 0. * mm;
   z = 0. * mm;
 
-  sigma_beam = 5 * mm / 2.35; // alta intensidad 3mm-sigma
+  // sigma_beam = 5 * mm / 2.35; // alta intensidad 3mm-sigma
+  sigma_beam = 0;
 
   y0 = 0. * mm;
   x0 = 0. * mm;
@@ -127,7 +128,8 @@ void BeamTestPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 
   do
   {
-    theta = /* (4 * G4UniformRand() + 2) * pi / 180 */0.066667*pi*(G4UniformRand()-0.5);
+    theta = (4 * G4UniformRand() + 2) * pi / 180; // 2-6 deg
+    // 0.066667*pi*(G4UniformRand()-0.5);
   } while (abs(theta) < 0.0349);
 
   //-----------------------------------------------------------------------------//
