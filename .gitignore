@@ -2,7 +2,12 @@
 /build/*
 /cmake/*
 arquivobinario
-G4Data0.heprep
+*.heprep
+*.prim
+*.eps
+*.default
+*.history
+
 <<<<<<< HEAD
 <<<<<<< HEAD
 /macros/*.txt

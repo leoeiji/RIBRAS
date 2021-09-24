@@ -15,6 +15,7 @@ void analise4()
     TTree *a1;
     TH2F *hT1C;
     ofstream lista("Current.txt");
+    ofstream plotRMS("plotRMS.txt");
 
     double lCurrent1 = DBL_MAX;
     double lCurrent2 = DBL_MAX;
@@ -22,12 +23,12 @@ void analise4()
     double bCurrent1 = DBL_MIN;
     double bCurrent2 = DBL_MIN;
 
-    for(Current1 = 15; Current1<=18; Current1 ++)
+    for(Current1 = 38.00; Current1<=42.00; Current1 ++)
     {
-        for(Current2 = 50; Current2<=70; Current2 ++)
+        for(Current2 = 35.00; Current2<=40.00; Current2 ++)
         {
             // Go to where are the root files
-            string root = "/home/leo/Desktop/RIBRAS/ROOT/tree_";
+            string root = "/home/leoeiji/Documents/RIBRAS/ROOT/tree_";
 
             // Getting all names
             ostringstream f;
@@ -42,18 +43,21 @@ void analise4()
 
             hT1C = new TH2F("hit","pos_y",500, -75.,75, 500, -75., 75.);  // Define a 2D histogram
 
-            a1->Draw("pos_y_det0:pos_x_det0 >> hit","", "goff");          // Drawing histogram
+            a1->Draw("pos_x_target:pos_y_target >> hit","", "goff");          // Drawing histogram
 
             double entries = hT1C->GetEntries();                          // Getting number of hits
             double sigma_x = hT1C->GetRMS(1);                             // Getting sigma x
             double sigma_y = hT1C->GetRMS(2);                             // Getting sigma y
+            double sqrtRMS = sqrt((pow(sigma_x, 2) + pow(sigma_y, 2)));
+
+            plotRMS << Current1 << " " << Current2 << " " << sqrtRMS << endl;   
 
             // Listing all simulations where are more than 80 hits on target
             // Getting a current interval where there are more than 80 hits
             // lCurrent1 < Current1 < bCurrent1
             // lCurrent2 < Current2 < bCurrent2
 
-            if(entries >= 80)
+            if(entries >= 800)
             {
                 if(Current1 > bCurrent1)
                 {

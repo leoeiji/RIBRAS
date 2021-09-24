@@ -279,11 +279,11 @@ void DetectorConstruction::ComputeParameters()
   Mag3_lenght = 90.0 * cm;
 
   // Target parameters
-  Target_height = 3 * cm;
-  Target_lenght = 3 * cm;
+  Target_height = 20 * cm;
+  Target_lenght = 20 * cm;
 
   // Detector position
-  G4double rPosition_z = -12.5;
+  G4double rPosition_z = -500;
 
   // Rear detectors
   DetectorPosition[0] = G4ThreeVector(-10., 0., rPosition_z) * cm;
@@ -459,7 +459,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
   Log_Target = new G4LogicalVolume(Sol_Target, TargetMaterial, "Log_Target");
 
   // Placing Target
-  Phys_Target = new G4PVPlacement(rotation, Target_pos, Log_Target, "Target", Log_Magnet2, false, 8, true);
+  Phys_Target = new G4PVPlacement(rotation, Target_pos, Log_Target, "Target", logicWorld, false, 8, true);
 
   // Color
   Log_Target->SetVisAttributes(new G4VisAttributes(red));
@@ -526,47 +526,47 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
   Detector_0.SetColor(cyan);
   Detector_0.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_1(1, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_1.Rotate(0., 90., 0.);
-  Detector_1.SetPosition(DetectorPosition[1]);
-  Detector_1.SetColor(cyan);
-  Detector_1.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_1(1, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_1.Rotate(0., 90., 0.);
+  // Detector_1.SetPosition(DetectorPosition[1]);
+  // Detector_1.SetColor(cyan);
+  // Detector_1.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_2(2, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_2.Rotate(90., 0., 90.);
-  Detector_2.SetPosition(DetectorPosition[2]);
-  Detector_2.SetColor(cyan);
-  Detector_2.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_2(2, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_2.Rotate(90., 0., 90.);
+  // Detector_2.SetPosition(DetectorPosition[2]);
+  // Detector_2.SetColor(cyan);
+  // Detector_2.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_3(3, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_3.Rotate(90., 0., 90.);
-  Detector_3.SetPosition(DetectorPosition[3]);
-  Detector_3.SetColor(cyan);
-  Detector_3.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_3(3, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_3.Rotate(90., 0., 90.);
+  // Detector_3.SetPosition(DetectorPosition[3]);
+  // Detector_3.SetColor(cyan);
+  // Detector_3.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_4(4, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_4.Rotate(90., 0., 90.);
-  Detector_4.SetPosition(DetectorPosition[4]);
-  Detector_4.SetColor(cyan);
-  Detector_4.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_4(4, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_4.Rotate(90., 0., 90.);
+  // Detector_4.SetPosition(DetectorPosition[4]);
+  // Detector_4.SetColor(cyan);
+  // Detector_4.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_5(5, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_5.Rotate(90., 0., 90.);
-  Detector_5.SetPosition(DetectorPosition[5]);
-  Detector_5.SetColor(cyan);
-  Detector_5.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_5(5, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_5.Rotate(90., 0., 90.);
+  // Detector_5.SetPosition(DetectorPosition[5]);
+  // Detector_5.SetColor(cyan);
+  // Detector_5.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_6(6, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_6.Rotate(0., 90., 0.);
-  Detector_6.SetPosition(DetectorPosition[6]);
-  Detector_6.SetColor(cyan);
-  Detector_6.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_6(6, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_6.Rotate(0., 90., 0.);
+  // Detector_6.SetPosition(DetectorPosition[6]);
+  // Detector_6.SetColor(cyan);
+  // Detector_6.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
-  Detector Detector_7(7, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
-  Detector_7.Rotate(0., 90., 0.);
-  Detector_7.SetPosition(DetectorPosition[7]);
-  Detector_7.SetColor(cyan);
-  Detector_7.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
+  // Detector Detector_7(7, Lengthy_dssd_t1, Lengthx_dssd_t1, Thickness_dssd_t1, noOfSensorStrips);
+  // Detector_7.Rotate(0., 90., 0.);
+  // Detector_7.SetPosition(DetectorPosition[7]);
+  // Detector_7.SetColor(cyan);
+  // Detector_7.Construct(Log_Magnet2); // This method requires a Logical Mother Volume
 
   //--------------------------------------------------------------------------------------------------------------//
 

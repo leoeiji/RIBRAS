@@ -62,7 +62,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *)
   G4String LogicalName = LogicalVolume->GetName();
 
   // If LogicalName is Log_Magnet2, it means it's the target
-  if (LogicalName == "Log_Magnet2")
+  if (LogicalName == "World")
   {
     LogicalVolume = step->GetTrack()->GetVolume()->GetLogicalVolume();
     LogicalName = LogicalVolume->GetName();
@@ -97,10 +97,10 @@ G4bool SensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *)
   hit->SetIncidenceTime(tiempo);
   hit->SetParticleID(ParticleID);
   hit->SetRecoilThetaCM(Inputs->rTheta);
-
   // Setting hit bools
   if (LogicalName == "Log_Target") // If this happen, it means that the hit was on target
   {
+    
     hit->SetHitOnTarget();
   }
   else

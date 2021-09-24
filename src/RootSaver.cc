@@ -244,7 +244,7 @@ void RootSaver::CreateTree(const std::string &fileName, const std::string &treeN
         rootTree->Branch("pos_z_det7", &Pos_z_det[7]);
 
         rootTree->Branch("pos_x_target", &Pos_x_target);
-        rootTree->Branch("pos_y_target", &Pos_z_target);
+        rootTree->Branch("pos_y_target", &Pos_y_target);
         rootTree->Branch("pos_z_target", &Pos_z_target);
         //-------------------------------------------//
 
@@ -359,9 +359,10 @@ void RootSaver::CloseTree()
                         G4cout << "Recoil particles: " << TotalRecoilHits * 100 / HitsOnTarget << "%" << G4endl;
                         G4cout << "Ejectile particles: " << TotalEjectileHits * 100 / HitsOnTarget << "%" << G4endl;
                         G4cout << " " << G4endl;
+                        G4cout << "Hits on Target: " << HitsOnTarget << G4endl;
                         G4cout << "Sigma X: " << sigma_x << G4endl;
                         G4cout << "Sigma Y: " << sigma_y << G4endl;
-                        G4cout << "Mean Sigma: " << (sigma_x + sigma_y) / 2.0 << G4endl;
+                        G4cout << "Mean Sigma: " << pow((pow(sigma_x,2) + pow(sigma_y,2)), 0.5) << G4endl;
                         G4cout << " " << G4endl;
                 }
 
@@ -498,6 +499,8 @@ void RootSaver::AddEvent(const SiHitCollection *const hits, const G4ThreeVector 
                         G4double x = pos.x();
                         G4double y = pos.y();
                         G4double z = pos.z();
+
+                        // cout << z << " " << y << endl;
 
                         // Getting momentum
                         G4ThreeVector momentum = hit->GetIncidenceMomentumDirection();

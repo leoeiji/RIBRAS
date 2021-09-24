@@ -6,47 +6,49 @@ rm *.root
 cd ..
 
 # Interval for Current1
-iCurrent1=150
-fCurrent1=180
+iCurrent1=380
+fCurrent1=420
 
 # Interval for Current2
-iCurrent2=500
-fCurrent2=700
+iCurrent2=350
+fCurrent2=400
 
 # Primary beam position (cm)
-Primary_pos=-115
+Primary_pos=-116
 
 # Primary beam energy (MeV)
-Primary_e=30
+Primary_e=$(echo "scale=2; 3500/100.0" | bc)
 
 # Target definition
-Target_Z=3
-Target_A=6
+Target_Z=2
+Target_A=4
 
 # Primary beam particles
-Primary_Z=9
-Primary_A=17
+Primary_Z=3
+Primary_A=8
 
 # Recoil particles
-Recoil_Z=1
-Recoil_A=2
+Recoil_Z=2
+Recoil_A=4
 
 # Ejectile particles
-Ejectile_Z=11
-Ejectile_A=21
+Ejectile_Z=3
+Ejectile_A=8
 
 # Target z position (cm)
-Target_z=0
+Target_z=478
+# 148
+# 478
 
 # Changing analyse macro
-sed -i "s/^    for(Current1.*/    for(Current1 = $((iCurrent1/10)); Current1<=$((fCurrent1/10)); Current1 ++)/" macros/analise4.mac
-sed -i "s/^        for(Current2.*/        for(Current2 = $((iCurrent2/10)); Current2<=$((fCurrent2/10)); Current2 ++)/" macros/analise4.mac
+sed -i "s/^    for(Current1.*/    for(Current1 = $(echo "scale=2; $iCurrent1/10.0" | bc); Current1<=$(echo "scale=2; $fCurrent1/10.0" | bc); Current1 ++)/" macros/analise4.mac
+sed -i "s/^        for(Current2.*/        for(Current2 = $(echo "scale=2; $iCurrent2/10.0" | bc); Current2<=$(echo "scale=2; $fCurrent2/10.0" | bc); Current2 ++)/" macros/analise4.mac
 
 # Initializing simulation
 echo 'Initializing simulation:'
 echo ' '
-echo "Current 1 interval: $((iCurrent1/10))A to $((fCurrent1/10))A"
-echo "Current 2 interval: $((iCurrent2/10))A to $((fCurrent2/10))A"
+echo "Current 1 interval: $(echo "scale=2; $iCurrent1/10.0" | bc)A to $(echo "scale=2; $fCurrent1/10.0" | bc)A"
+echo "Current 2 interval: $(echo "scale=2; $iCurrent2/10.0" | bc)A to $(echo "scale=2; $fCurrent2/10.0" | bc)A"
 echo "Primary beam position: $Primary_pos m"
 echo "Primary beam energy: $Primary_e"
 echo "Target position: $Target_z m"                            
@@ -61,7 +63,7 @@ do
     r2f=$(echo "scale=2; $fCurrent2/10.0" | bc)
 
     # Create macro ready for loop
-    echo -e "/control/verbose 0 \n/run/verbose 0 \n/vis/disable \n/det/field 1 \n/det/target/material G4_POLYETHYLENE \n/det/target/Z $Target_Z \n/det/target/A $Target_A \n/det/target/width 1.89e-3 \n/det/target/pos 0. 0. $Target_z \n/det/primary/energy $Primary_e MeV \n/det/primary/Z $Primary_Z \n/det/primary/A $Primary_A \n/det/primary/pos 0. 0. $Primary_pos \n/det/recoil/A $Recoil_A \n/det/recoil/Z $Recoil_Z \n/det/ejectile/A $Ejectile_A \n/det/ejectile/Z $Ejectile_Z" "\n/det/currentValue $r1" "\n/det/currentValue2 {current}" "\n/det/update" "\n/run/beamOn 100" > tmp.mac
+    echo -e "/control/verbose 0 \n/run/verbose 0 \n/vis/disable \n/det/field 1 \n/det/target/material G4_POLYETHYLENE \n/det/target/Z $Target_Z \n/det/target/A $Target_A \n/det/target/width 1.89e-3 \n/det/target/pos 0. 0. $Target_z \n/det/primary/energy $Primary_e MeV \n/det/primary/Z $Primary_Z \n/det/primary/A $Primary_A \n/det/primary/pos 0. 0. $Primary_pos \n/det/recoil/A $Recoil_A \n/det/recoil/Z $Recoil_Z \n/det/ejectile/A $Ejectile_A \n/det/ejectile/Z $Ejectile_Z" "\n/det/currentValue $r1" "\n/det/currentValue2 {current}" "\n/det/update" "\n/run/beamOn 1000" > tmp.mac
 
     # Create looping macro
     echo -e "/control/loop tmp.mac current $r2i $r2f 1.0" > looping.mac
@@ -93,8 +95,8 @@ then
     cd ..
 
     # Changing analyse macro
-    sed -i "s/^    for(Current1.*/    for(Current1 = $((iCurrent1/10)); Current1<=$((fCurrent1/10)); Current1 += 0.2)/" macros/analise3.mac
-    sed -i "s/^        for(Current2.*/        for(Current2 = $((iCurrent2/10)); Current2<=$((fCurrent2/10)); Current2 += 0.2)/" macros/analise3.mac
+    sed -i "s/^    for(Current1.*/    for(Current1 = $(echo "scale=2; $iCurrent1/10.0" | bc); Current1<=$(echo "scale=2; $fCurrent1/10.0" | bc); Current1 += 0.2)/" macros/analise3.mac
+    sed -i "s/^        for(Current2.*/        for(Current2 = $(echo "scale=2; $iCurrent2/10.0" | bc); Current2<=$(echo "scale=2; $fCurrent2/10.0" | bc); Current2 += 0.2)/" macros/analise3.mac
 
     # Running simulation with a interval of 0.2
     for ((x1 = $iCurrent1 ; x1 <= $fCurrent1 ; x1+=2)); 
@@ -105,7 +107,7 @@ then
         r2f=$(echo "scale=2; $fCurrent2/10.0" | bc)
 
         # Create macro ready for loop
-        echo -e "/control/verbose 0 \n/run/verbose 0 \n/vis/disable \n/det/field 1 \n/det/target/material G4_POLYETHYLENE \n/det/target/Z $Target_Z \n/det/target/A $Target_A \n/det/target/width 1.89e-3 \n/det/target/pos 0. 0. $Target_z \n/det/primary/energy $Primary_e MeV \n/det/primary/Z $Primary_Z \n/det/primary/A $Primary_A \n/det/primary/pos 0. 0. $Primary_pos \n/det/recoil/A $Recoil_A \n/det/recoil/Z $Recoil_Z \n/det/ejectile/A $Ejectile_A \n/det/ejectile/Z $Ejectile_Z" "\n/det/currentValue $r1" "\n/det/currentValue2 {current}" "\n/det/update" "\n/run/beamOn 100" > tmp.mac
+        echo -e "/control/verbose 0 \n/run/verbose 0 \n/vis/disable \n/det/field 1 \n/det/target/material G4_POLYETHYLENE \n/det/target/Z $Target_Z \n/det/target/A $Target_A \n/det/target/width 1.89e-3 \n/det/target/pos 0. 0. $Target_z \n/det/primary/energy $Primary_e MeV \n/det/primary/Z $Primary_Z \n/det/primary/A $Primary_A \n/det/primary/pos 0. 0. $Primary_pos \n/det/recoil/A $Recoil_A \n/det/recoil/Z $Recoil_Z \n/det/ejectile/A $Ejectile_A \n/det/ejectile/Z $Ejectile_Z" "\n/det/currentValue $r1" "\n/det/currentValue2 {current}" "\n/det/update" "\n/run/beamOn 1000" > tmp.mac
 
         # Create looping macro
         echo -e "/control/loop tmp.mac current $r2i $r2f 0.2" > looping.mac

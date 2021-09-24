@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>   
 #include <stdlib.h> 
+#include <cmath>
 
 using namespace std;
 
@@ -17,12 +18,12 @@ void analise3()
     ofstream lista("RMS.txt");
     ofstream lista2("data.txt");
 
-    for(Current1 = 15; Current1<=18; Current1 += 0.2)
+    for(Current1 = 38.00; Current1<=42.00; Current1 += 0.2)
     {
-        for(Current2 = 50; Current2<=70; Current2 += 0.2)
+        for(Current2 = 35.00; Current2<=40.00; Current2 += 0.2)
         {
             // Go to where are the root files
-            string root = "/home/leo/Desktop/RIBRAS/ROOT/tree_";
+            string root = "/home/leoeiji/Documents/RIBRAS/ROOT/tree_";
 
             // Getting all root file names
             ostringstream f;
@@ -37,19 +38,20 @@ void analise3()
 
             hT1C = new TH2F("hit","pos_y",500, -75.,75, 500, -75., 75.);  // Define a 2D histogram
 
-            a1->Draw("pos_y_det0:pos_x_det0 >> hit","", "goff");          // Drawing histogram
+            a1->Draw("pos_x_target:pos_y_target >> hit","", "goff");          // Drawing histogram
 
             double entries = hT1C->GetEntries();                          // Getting number of hits
             double sigma_x = hT1C->GetRMS(1);                             // Getting sigma x
             double sigma_y = hT1C->GetRMS(2);                             // Getting sigma y
+            double sqrtRMS = sqrt((pow(sigma_x, 2) + pow(sigma_y, 2)));
 
             // Listing all data (data.txt)
-            lista2 << entries << " " << Current1 << " " << Current2 << " " << (sigma_x + sigma_y)/2 << endl;
+            lista2 << entries << " " << Current1 << " " << Current2 << " " << sqrtRMS << endl;
 
             // Listing all data for high number of hits (RMS.txt)
-            if(entries == 100)
+            if(entries == 1000)
             {
-                lista << (sigma_x + sigma_y)/2 << " " << Current1 << " " << Current2 << endl;
+                lista << sqrtRMS << " " << Current1 << " " << Current2 << endl;
             }
 
             // Cleaning everything
