@@ -23,9 +23,9 @@ void analise4()
     double bCurrent1 = DBL_MIN;
     double bCurrent2 = DBL_MIN;
 
-    for(Current1 = 38.00; Current1<=42.00; Current1 ++)
+    for(Current1 = 10.00; Current1<=70.00; Current1 ++)
     {
-        for(Current2 = 35.00; Current2<=40.00; Current2 ++)
+        for(Current2 = 0; Current2<=0; Current2 ++)
         {
             // Go to where are the root files
             string root = "/home/leoeiji/Documents/RIBRAS/ROOT/tree_";

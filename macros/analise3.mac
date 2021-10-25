@@ -18,9 +18,9 @@ void analise3()
     ofstream lista("RMS.txt");
     ofstream lista2("data.txt");
 
-    for(Current1 = 38.00; Current1<=42.00; Current1 += 0.2)
+    for(Current1 = 28.00; Current1<=54.00; Current1 += .10)
     {
-        for(Current2 = 35.00; Current2<=40.00; Current2 += 0.2)
+        for(Current2 = 0; Current2<=0; Current2 += .10)
         {
             // Go to where are the root files
             string root = "/home/leoeiji/Documents/RIBRAS/ROOT/tree_";

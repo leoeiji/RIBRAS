@@ -316,8 +316,8 @@ public:
    virtual void Show(Long64_t entry = -1);
    void Soma();
    void MergeRootfile(TDirectory *target, TList *sourcelist);
-   double Current1 = 16.80;
-   double Current2 = 60.40;
+   double Current1 = 30.00;
+   double Current2 = 0.00;
 };
 
 #endif
@@ -344,7 +344,7 @@ Analysis::Analysis(TTree *tree) : fChain(0)
       stringstream filename;
 
       // Go to where are the root files
-      string root = "/home/leo/Desktop/RIBRAS/ROOT/tree_";
+      string root = "~/Documents/RIBRAS/ROOT/tree_";
 
       // File
       filename.precision(2);

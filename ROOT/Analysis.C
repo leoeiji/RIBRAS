@@ -32,7 +32,11 @@ using namespace std;
 
 void Analysis::Soma()
 {
-   TFile *file = new TFile("0.root", "open");
+   // File name
+   stringstream f;
+   f << "Histograms2D - " << Analysis::Current1 << "_" << Analysis::Current2 << "A.root";
+
+   TFile *file = new TFile(f.str().data(), "open");
 
    TH2F *EvStrip0 = (TH2F *)file->Get("Energy vs Strip 0");
    TH2F *EvStrip1 = (TH2F *)file->Get("Energy vs Strip 1");
@@ -180,17 +184,17 @@ void Analysis::Soma()
    ThetaCMvStripFrontais->Add(ThetaCMvStrip7);
    ThetaCMvStripFrontais->Write();
 
-   TH2F *TvEdepTraseiros = (TH2F *)TvEdep0->Clone("TvEdep Traseiros");
-   TvEdepTraseiros->Add(TvEdep1);
-   TvEdepTraseiros->Add(TvEdep2);
-   TvEdepTraseiros->Add(TvEdep3);
-   TvEdepTraseiros->Write();
+   // TH2F *TvEdepTraseiros = (TH2F *)TvEdep0->Clone("TvEdep Traseiros");
+   // TvEdepTraseiros->Add(TvEdep1);
+   // TvEdepTraseiros->Add(TvEdep2);
+   // TvEdepTraseiros->Add(TvEdep3);
+   // TvEdepTraseiros->Write();
 
-   TH2F *TvEdepFrontais = (TH2F *)TvEdep4->Clone("TvEdep Frontais");
-   TvEdepFrontais->Add(TvEdep5);
-   TvEdepFrontais->Add(TvEdep6);
-   TvEdepFrontais->Add(TvEdep7);
-   TvEdepFrontais->Write();
+   // TH2F *TvEdepFrontais = (TH2F *)TvEdep4->Clone("TvEdep Frontais");
+   // TvEdepFrontais->Add(TvEdep5);
+   // TvEdepFrontais->Add(TvEdep6);
+   // TvEdepFrontais->Add(TvEdep7);
+   // TvEdepFrontais->Write();
 
    // TH2F *TvEkinTraseiros = (TH2F *)TvEKin0->Clone("TvEkin Traseiros");
    // TvEkinTraseiros->Add(TvEKin1);

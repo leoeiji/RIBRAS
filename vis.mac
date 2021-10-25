@@ -19,28 +19,27 @@
 /vis/reviewKeptEvents
 
 /vis/modeling/trajectories/create/drawByParticleID
-/vis/modeling/trajectories/drawByParticleID-0/set He6 blue
-/vis/modeling/trajectories/drawByParticleID-0/set F17 red
-/vis/modeling/trajectories/drawByParticleID-0/set alpha orange
+/vis/modeling/trajectories/drawByParticleID-0/set alpha blue
+/vis/modeling/trajectories/drawByParticleID-0/set N14 red
+/vis/modeling/trajectories/drawByParticleID-0/set C12 orange
 
 # Turn On/Off the magnetic field
 /det/field 1
 
 # Define the target material
-/det/target/material G4_Galactic
+/det/target/material G4_LITHIUM_FLUORIDE
 #G4_POLYETHYLENE
-/det/target/Z 2
-/det/target/A 4
-/det/target/width 1e-1
-#1.89e-3
+/det/target/Z 3
+/det/target/A 6
+/det/target/width 1.89e-3
 
 # Define target position (x, y, z)(cm)
-/det/target/pos 0. 0. 478
+/det/target/pos 0. 0. 148.
 
 # Define the primary particle
-/det/primary/energy 35. MeV
-/det/primary/Z 3
-/det/primary/A 8
+/det/primary/energy 20. MeV
+/det/primary/Z 6
+/det/primary/A 12
 /det/primary/pos 0. 0. -116.
 
 ############################################
@@ -48,12 +47,12 @@
 ############################################
 
 # Define the recoil particle
-/det/recoil/A 4
 /det/recoil/Z 2
+/det/recoil/A 4
 
 # Define the ejectile particle
-/det/ejectile/A 3
-/det/ejectile/Z 8
+/det/ejectile/A 14
+/det/ejectile/Z 7
 /det/ejectile/Ex 0 MeV
 
 # Define decay particle 1
@@ -67,12 +66,13 @@
 #/vis/disable
 
 # Set current
-/det/currentValue 40.6
-/det/currentValue2 37.5
+/det/currentValue 30
+/det/currentValue2 0
+#/det/currentValue2 37.5
 
 ##Set external Xsection
 /det/xsec/ext_xsec 1
-/det/xsec/filename xsections/example_Xs.dat
+/det/xsec/filename xsections/xs0.dat
 
 # This this command updates the geometry with all the inputs above
 /det/update

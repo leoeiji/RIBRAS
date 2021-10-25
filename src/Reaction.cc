@@ -58,6 +58,8 @@ G4VParticleChange *Reaction::PostStepDoIt(const G4Track &aTrack,
     if(Inputs->using_xsection) ThetaInCM = GetTheta_Xsec();
     else ThetaInCM = (180 * CLHEP::RandFlat::shoot()) * degree;
 
+    // cout << ThetaInCM << endl;
+
     G4double randomPhiInCM = CLHEP::RandFlat::shoot() * 2 * pi;    // 0 - 2pi in transverse angle (azimuth)
 
     // Lorentz Vectors for each particle: ejectile, recoil, decay1 and decay2
