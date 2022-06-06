@@ -2,6 +2,8 @@
 
 Essa é uma simulação do RIBRAS (Radioactive Ion Beam In Brazil) feita com a ferramenta GEANT4. Foi o projeto de iniciação científica de alunos de graduação em física da USP. O programa visa simular a física de uma reação nuclear.
 
+Artigo sobre as simulações: https://doi.org/10.1007/s13538-022-01090-y
+
 ### Requisitos
 
 Entre os requisitos estão as ferramentas:
